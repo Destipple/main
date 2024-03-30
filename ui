@@ -1,5 +1,5 @@
 local library = {}
-local function play(id)
+function play(id)
     for _, v in next, workspace:GetChildren() do
         if v.Name == "GUISound" then
             v:Destroy()
@@ -12,7 +12,7 @@ local function play(id)
     Sound:Play()
  end
 
-local function library:CreateWindow(name,theme)
+function library:CreateWindow(name,theme)
 local theme1
 local theme2
 local theme3
@@ -27,6 +27,7 @@ if theme == "Normal" then
 theme1 = Color3.fromRGB(32,32,32)
 theme2 = Color3.fromRGB(26,26,26)
 theme3 = Color3.fromRGB(176, 148, 255)
+print("Theme selected: "..theme)
 elseif theme == "Reverse" then
     theme1 = Color3.fromRGB(26,26,26)
     theme2 = Color3.fromRGB(32,32,32)
@@ -175,7 +176,7 @@ end)
 
 local InsideLibrary = {}
 
-local function InsideLibrary:CreateTab(text)
+function InsideLibrary:CreateTab(text)
     local TextButton1 = Instance.new("TextButton")
     local Frame = Instance.new("ScrollingFrame")
     local UIGridLayout_2 = Instance.new("UIGridLayout")
@@ -233,7 +234,7 @@ end)
 
 local InsideTab = {}
 
-local function InsideTab:CreateDropdown(text, list, callback)
+function InsideTab:CreateDropdown(text, list, callback)
     local BodyYSize = 0
     local IsDropped = false
     callback = callback or function() end
@@ -335,7 +336,7 @@ UIListLayout_2.Parent = DropdownContainer
 UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 end
 
-local function InsideTab:CreateSlider(text, minvalue, maxvalue, callback)
+function InsideTab:CreateSlider(text, minvalue, maxvalue, callback)
     text = text or "Slider"
     minvalue = minvalue or 0
     maxvalue = maxvalue or 100
@@ -454,7 +455,7 @@ SliderButton.MouseButton1Down:Connect(function()
 end)
 end
 
-local function InsideTab:Show()
+function InsideTab:Show()
     for i,v in next,Items:GetChildren() do
         v.Visible = false
         end
@@ -462,7 +463,7 @@ local function InsideTab:Show()
         TextButton1.TextColor3 = theme3
 end
 
-local function InsideTab:CreateToggle(text,callback)
+function InsideTab:CreateToggle(text,callback)
     text = text or "New Toggle"
     callback = callback or function() end
     local switchactions = {}
@@ -516,7 +517,7 @@ ToggleButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 ToggleButton.TextSize = 14.000
 
 local enabled = false
-local function trigger()
+function trigger()
 enabled = not enabled
 pcall(callback,enabled)
 play("rbxassetid://6309164078")
@@ -537,7 +538,7 @@ end
 
 ToggleButton.MouseButton1Click:Connect(trigger)
 
-local function switchactions:Set(state)
+function switchactions:Set(state)
 enabled = state
 if enabled then
     Frame_t.ImageColor3 = theme3
@@ -557,7 +558,7 @@ end
 return switchactions
 end
 
-local function InsideTab:CreateCheckbox(text,callback)
+function InsideTab:CreateCheckbox(text,callback)
     local Cheat = Instance.new("TextLabel")
     local MainCheatFrame = Instance.new("ImageLabel")
     local InsideCheatFrame = Instance.new("ImageLabel")
@@ -624,7 +625,7 @@ local function InsideTab:CreateCheckbox(text,callback)
     CheatButton.MouseButton1Click:Connect(triggercheat)
 end
 
-local function InsideTab:CreateButton(text, callback)
+function InsideTab:CreateButton(text, callback)
     text = text or "New Button"
     callback = callback or function() end
     local Button = Instance.new("TextButton")
